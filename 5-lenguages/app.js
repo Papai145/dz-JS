@@ -1,16 +1,16 @@
 let lengua = "de";
 
-switch (true) {
-  case lengua === "en":
+switch (lengua.toLowerCase()) {
+  case "en":
     console.log("Hallo");
     break;
-  case lengua === "ru":
+  case "ru":
     console.log("Привет");
     break;
-  case lengua === "de":
+  case "de":
     console.log("Guten Tag");
     break;
-  case lengua === "es":
+  case "es":
     console.log("Hola");
     break;
 }
