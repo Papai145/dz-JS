@@ -1,17 +1,19 @@
 function crypto(password) {
-  let arr = password.split("").reverse();
-  let arr1 = arr.splice(4);
-  let result = arr.reverse().concat(arr1).join("");
+  let conversionToArray = password.split("");
+  let secondPartArr = conversionToArray.splice(4).reverse();
+  let firstPartArr = conversionToArray.reverse();
+  let result = firstPartArr.concat(secondPartArr).join("");
   return result;
 }
 
-console.log(crypto("password"));
-
-function check(password) {
-  let arr = password.split("");
-  let arr1 = arr.splice(4);
-  arr.reverse();
-  let result = arr.concat(arr1).reverse().join("");
-  return result;
+function checkPassword(encryptedPassword, originalPassword) {
+  if (!encryptedPassword || !originalPassword) {
+    return false;
+  }
+  return originalPassword === crypto(encryptedPassword);
 }
-console.log(check("wordssap"));
+const pwd = "password";
+const encrypt = crypto(pwd); // ssapdorw
+console.log(encrypt);
+const decrypt = crypto(encrypt); // password
+console.log(decrypt);
