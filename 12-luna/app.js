@@ -1,4 +1,7 @@
-const card = "4561-2612-1234-5467";
+const card = "234s834503458353";
+const card1 = "2342834503458353";
+const card2 = "4561-2612-1234-5464";
+const card3 = "4561-2612-1534-5464";
 
 function checkCard(number) {
   if (number % 10 == 0) {
@@ -25,6 +28,9 @@ function luna(card) {
       count += Number(card[i - 1]);
     }
   }
-  return count;
+  return checkCard(count);
 }
 console.log(luna(card));
+console.log(luna(card1));
+console.log(luna(card2));
+console.log(luna(card3));

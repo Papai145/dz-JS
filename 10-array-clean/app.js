@@ -1,8 +1,8 @@
 function filter(arr, fun) {
   let result = [];
-  for (let index in arr) {
-    if (!fun(arr[index])) {
-      result.push(arr[index]);
+  for (let item of arr) {
+    if (!fun(item)) {
+      result.push(item);
     }
   }
   return result;
