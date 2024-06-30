@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="form">
+      <div class="inputs">
+        <input
+          type="text"
+          class="number"
+          placeholder="введите первое число"
+          onclick="clearResult()"
+        />
+        <input
+          type="text"
+          class="number"
+          placeholder="введите второе число"
+          onclick="clearResult()"
+        />
+      </div>
+      <div class="submits">
+        <input
+          type="submit"
+          name="1"
+          value="сложение"
+          onclick="clickFun(event)"
+        />
+        <input
+          type="submit"
+          name="2"
+          value="вычитание"
+          onclick="clickFun(event)"
+        />
+        <input
+          type="submit"
+          name="3"
+          value="умножение"
+          onclick="clickFun(event)"
+        />
+        <input
+          type="submit"
+          name="4"
+          value="деление"
+          onclick="clickFun(event)"
+        />
+      </div>
+      <div class="result"></div>
+    </div>
+  </body>
+  <script src="./app.js"></script>
+</html>
