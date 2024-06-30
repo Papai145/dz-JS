@@ -1,40 +1,40 @@
 const toDoList = {
   tasks: [],
   checkElement: function (id) {
-    const result = this.tasks.findIndex((el) => el.id == id);
-    return result != -1 ? result : false;
+    return this.tasks.find((f) => f.id === id);
   },
   addTasks: function (task) {
-    if (!this.checkElement(task.id)) {
+    if (!this.tasks.find((f) => f.title === task.title)) {
       this.tasks.push(task);
     } else {
-      console.log(`элемент с  id = ${task.id} уже есть`);
+      console.log(`элемент с  заголовком "${task.title}" уже есть`);
       return false;
     }
   },
   deleteTask: function (id) {
     const result = this.checkElement(id);
-    if (result) {
-      this.tasks.splice(result, 1);
-    } else {
+    if (!result) {
       console.log(`элемента с  id =${id} нет!`);
-      return false;
+      return;
     }
+
+    this.tasks = this.tasks.filter((f) => f.id !== id);
   },
   updatedTask: function (id, property) {
-    const result = this.checkElement(id);
-    if (result) {
-      if (typeof property == "number") {
-        this.tasks[result].priority = Number(property);
-      } else {
-        this.tasks[result].title = `${property}`;
-      }
-    } else {
+    const task = this.checkElement(id);
+    if (!task) {
       console.log(`элемента с  id =${id} нет!`);
-      return false;
+      return;
+    }
+
+    if (typeof property == "number") {
+      task.priority = Number(property);
+    } else {
+      task.title = `${property}`;
     }
   },
   sortingId: function () {
+    f;
     return this.tasks.sort((a, b) => b.id - a.id);
   },
   sortingPriority: function (mode = true) {
@@ -60,4 +60,6 @@ let task3 = {
 };
 toDoList.addTasks(task1);
 toDoList.addTasks(task2);
+toDoList.addTasks(task3);
+console.log(toDoList.tasks);
 toDoList.addTasks(task3);
