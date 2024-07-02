@@ -66,21 +66,21 @@ let task4 = {
 toDoList.addTasks(task1);
 toDoList.addTasks(task2);
 toDoList.addTasks(task3);
-toDoList.addTasks(task4);
-console.log(toDoList.tasks);
 
-updatedTaskWithDesc = {
-  newFunc(id, desctiprion) {
-    const result = this.checkElement(id);
-    if (result) {
-      result.desctiprion = `${desctiprion}`;
-    } else {
-      console.log(`элемента с  id =${id} нет!`);
-      return false;
-    }
+newTasks = {
+  tasks: [],
+  checkElement: function (id) {
+    return this.tasks.find((f) => f.id === id);
   },
 };
-const updatedDesc = updatedTaskWithDesc.newFunc.bind(toDoList);
-updatedDesc(4, "сделать только английский !!!!");
 
-console.log(toDoList.tasks);
+const newTasksAddFu = toDoList.addTasks.bind(newTasks);
+const newTasksUpdateFu = toDoList.updatedTask.bind(newTasks);
+const newTasksDeleteFu = toDoList.deleteTask.bind(newTasks);
+const newTasksSortFu = toDoList.sortingId.bind(newTasks);
+const newTasksSortPriorityFu = toDoList.sortingPriority.bind(newTasks);
+
+newTasksAddFu(task4);
+console.log(newTasks.tasks);
+newTasksUpdateFu(4, "сделать уроки обязательно");
+console.log(newTasks.tasks);

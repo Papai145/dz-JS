@@ -3,33 +3,26 @@ const page = {
   numbers: document.querySelectorAll(".number"),
 };
 function show(result) {
-  page.information.innerText = `Результат = ${result.toFixed(2)}`;
-  page.numbers[0].value = "";
-  page.numbers[1].value = "";
+  page.information.innerText = `Результат = ${
+    isNaN(result) ? result : result.toFixed(2)
+  }`;
+  [...page.numbers].map((x) => (x.value = ""));
 }
-
+const action = {
+  1: (a, b) => a + b,
+  2: (a, b) => a - b,
+  3: (a, b) => a * b,
+  4: (a, b) => (b === 0 ? "нельзя делить на 0" : a / b),
+};
 function clickFun(e) {
-  let number1 = Number(page.numbers[0].value);
-  let number2 = Number(page.numbers[1].value);
-  if (number1 && number2) {
-    const but = e.target.name;
-    let result = 0;
-    if (but == 1) {
-      result = number1 + number2;
-    }
-    if (but == 2) {
-      result = number1 - number2;
-    }
-    if (but == 3) {
-      result = number1 * number2;
-    }
-    if (but == 4) {
-      result = number1 / number2;
-    }
-    show(result);
-  } else {
-    page.information.innerText = `Не корректные данные `;
+  const [num1, num2] = [...page.numbers].map(({ value }) => Number(value));
+  if (isNaN(num1) || isNaN(num2)) {
+    page.information.innerText = "Не корректные данные";
+    return;
   }
+
+  let result = action[e.target.name](num1, num2);
+  show(result);
 }
 function clearResult() {
   page.information.innerText = "";
