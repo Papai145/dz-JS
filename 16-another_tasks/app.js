@@ -20,17 +20,17 @@ const toDoList = {
 
     this.tasks = this.tasks.filter((f) => f.id !== id);
   },
-  updatedTask: function (id, property) {
+  updatedTask: function (obj) {
+    const { id, ...newObj } = obj;
     const task = this.checkElement(id);
     if (!task) {
       console.log(`элемента с  id =${id} нет!`);
       return;
     }
-
-    if (typeof property == "number") {
-      task.priority = Number(property);
-    } else {
-      task.title = `${property}`;
+    for (const key in newObj) {
+      if (task[key]) {
+        task[key] = newObj[key];
+      }
     }
   },
   sortingId: function () {
@@ -82,5 +82,11 @@ const newTasksSortPriorityFu = toDoList.sortingPriority.bind(newTasks);
 
 newTasksAddFu(task4);
 console.log(newTasks.tasks);
-newTasksUpdateFu(4, "сделать уроки обязательно");
+const newInfo = {
+  id: 4,
+  title: "погулять с собакой",
+  desctiprion: "пофиг на уроки,надо погулят с собакой",
+  priority: 6,
+};
+newTasksUpdateFu(newInfo);
 console.log(newTasks.tasks);
