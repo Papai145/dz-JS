@@ -27,11 +27,7 @@ const toDoList = {
       console.log(`элемента с  id =${id} нет!`);
       return;
     }
-    for (const key in newObj) {
-      if (task[key]) {
-        task[key] = newObj[key];
-      }
-    }
+    Object.assign(task, newObj);
   },
   sortingId: function () {
     return this.tasks.sort((a, b) => b.id - a.id);
@@ -60,7 +56,7 @@ let task3 = {
 let task4 = {
   title: "Сделать уроки",
   id: 4,
-  desctiprion: "нужно сделать математику и английский",
+  // desctiprion: "нужно сделать математику и английский",
   priority: 5,
 };
 toDoList.addTasks(task1);
